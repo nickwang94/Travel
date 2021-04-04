@@ -18,7 +18,6 @@ export default {
   name: 'HomeHeader'
 }
 </script>
-
 <!--scoped表示该样式只对当前文件有效-->
 <style lang="stylus" scoped>
   @import "~styles/varibles.styl"
@@ -51,6 +50,7 @@ export default {
       height: .64rem
       line-height: .64rem
       margin-top: .12rem
+      padding-left: .2rem
       width: 1.24rem
       float: right
       .arrow-icon
