@@ -1,14 +1,8 @@
 <template>
   <div class="wrapper">
     <swiper ref="mySwiper" :options="swiperOptions">
-      <swiper-slide>
-        <img class="swiper-img" src="../../../assets/images/1.jpg" alt="">
-      </swiper-slide>
-      <swiper-slide>
-        <img class="swiper-img" src="../../../assets/images/2.jpg" alt="">
-      </swiper-slide>
-      <swiper-slide>
-        <img class="swiper-img" src="../../../assets/images/3.jpg" alt="">
+      <swiper-slide v-for="item of swiperList" :key="item.id">
+        <img class="swiper-img" :src="item.imgUrl">
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -21,8 +15,23 @@ export default {
   data () {
     return {
       swiperOptions: {
-        pagination: '.swiper-pagination'
-      }
+        pagination: '.swiper-pagination',
+        loop: true
+      },
+      swiperList: [
+        {
+          id: '1',
+          imgUrl: '../../../static/images/1.jpg'
+        },
+        {
+          id: '2',
+          imgUrl: '../../../static/images/2.jpg'
+        },
+        {
+          id: '3',
+          imgUrl: '../../../static/images/3.jpg'
+        }
+      ]
     }
   }
 }
