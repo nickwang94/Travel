@@ -2,7 +2,7 @@
   <div class="wrapper">
     <swiper ref="mySwiper" :options="swiperOptions">
       <swiper-slide v-for="item of swiperList" :key="item.id">
-        <img class="swiper-img" :src="item.imgUrl">
+        <img class="swiper-img" :src="item.imgUrl" alt="">
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -21,15 +21,15 @@ export default {
       swiperList: [
         {
           id: '1',
-          imgUrl: '../../../static/images/1.jpg'
+          imgUrl: '../../../../static/images/1.jpg'
         },
         {
           id: '2',
-          imgUrl: '../../../static/images/2.jpg'
+          imgUrl: '../../../../static/images/2.jpg'
         },
         {
           id: '3',
-          imgUrl: '../../../static/images/3.jpg'
+          imgUrl: '../../../../static/images/3.jpg'
         }
       ]
     }
