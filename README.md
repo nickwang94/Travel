@@ -125,4 +125,20 @@ props: {
 }
 ```
 ## 3. Better-scroll
+- 安装
+```bash
+npm install better-scroll --save
+```
+- 使用
 
+Dom元素应该被一个`div`包裹住，然后导入better-scroll
+```vue
+import Bscroll from 'better-scroll'
+```
+然后在声明周期函数中进行创建：
+```vue
+mounted () {
+  // 在页面挂在完毕执行
+  this.scroll = new Bscroll(this.$refs.wrapper)
+}
+```
