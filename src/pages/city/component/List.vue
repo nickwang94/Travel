@@ -38,12 +38,15 @@ export default {
     hotCities: Array,
     letter: String
   },
-  mounted () {
-    // 当数据更新了，在dom中渲染后，自动执行该函数
-    this.$nextTick(() => {
-      this.scroll = new Bscroll(this.$refs.wrapper, {})
-    })
+  updated () {
+    this.scroll = new Bscroll(this.$refs.wrapper, {})
   },
+  // mounted () {
+  //   // 当数据更新了，在dom中渲染后，自动执行该函数
+  //   this.$nextTick(() => {
+  //     this.scroll = new Bscroll(this.$refs.wrapper, {})
+  //   })
+  // },
   watch: {
     letter () {
       // 监听letter的变化
