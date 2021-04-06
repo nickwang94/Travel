@@ -143,5 +143,31 @@ mounted () {
 }
 ```
 - 不能滚动的问题
+```vue
+updated () {
+  this.scroll = new Bscroll(this.$refs.wrapper, {})
+}
+```
+在创建对象时，要保证页面已经完成加载，这样才能确保wraper和content的计算是正确的
 
-> 不能滚动是现象，我们得搞清楚这其中的根本原因。在这之前，我们先来看一下浏览器的滚动原理： 浏览器的滚动条大家都会遇到，当页面内容的高度超过视口高度的时候，会出现纵向滚动条；当页面内容的宽度超过视口宽度的时候，会出现横向滚动条。也就是当我们的视口展示不下内容的时候，会通过滚动条的方式让用户滚动屏幕看到剩余的内容。
+## 4. 组件之间的数据传递
+Alphabet组件监听`click`事件，并在事件中发送一个`change`事件，并传递点击的字母
+```vue
+handleLetterClick (e) {
+  this.$emit('change', e.target.innerText)
+}
+```
+然后在其父组件`City`中，在`Alphabet`组件上监听change事件。
+```html
+<city-alphabet :cities="cities" @change="handleLetterChange"></city-alphabet>
+```
+并在事件中将点击字母保存至data中：
+```vue
+handleLetterChange (letter) {
+  this.letter = letter
+}
+```
+最后将data数据传递给子组件`List`，完成兄弟组件的数据传递。
+```html
+<city-list :cities="cities" :hotCities="hotCities" :letter="letter"></city-list>
+```
