@@ -1,6 +1,6 @@
 <template>
   <div class="list" ref="wrapper">
-    <div>
+    <div class="content">
       <div class="area">
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="area" v-for="(item,key) of cities" :key="key">
+      <div class="area" v-for="(item,key) of cities" :key="key" :ref="key">
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
           <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">
@@ -35,13 +35,23 @@ export default {
   name: 'CityList',
   props: {
     cities: Object,
-    hotCities: Array
+    hotCities: Array,
+    letter: String
   },
   mounted () {
-    // 在页面挂在完毕执行
-    this.scroll = new Bscroll(this.$refs.wrapper, {
-      scrollY: true
+    // 当数据更新了，在dom中渲染后，自动执行该函数
+    this.$nextTick(() => {
+      this.scroll = new Bscroll(this.$refs.wrapper, {})
     })
+  },
+  watch: {
+    letter () {
+      // 监听letter的变化
+      if (this.letter) {
+        const element = this.$refs[this.letter][0]
+        this.scroll.scrollToElement(element)
+      }
+    }
   }
 }
 </script>
