@@ -59,7 +59,7 @@ axios.get('/api/index.json')
 
 文件地址：`/config/index.js`
 配置内容：
-```json
+```javascript
 dev: {
   // Paths
   assetsSubDirectory: 'static',
@@ -72,7 +72,7 @@ dev: {
         '^/api': '/static/mock'
       }
     }
-  },
+  }
   // ......
 }
 ```
@@ -124,3 +124,24 @@ props: {
   list: Array
 }
 ```
+## 3. Better-scroll
+- 安装
+```bash
+npm install better-scroll --save
+```
+- 使用
+
+Dom元素应该被一个`div`包裹住，然后导入better-scroll
+```vue
+import Bscroll from 'better-scroll'
+```
+然后在声明周期函数中进行创建：
+```vue
+mounted () {
+  // 在页面挂在完毕执行
+  this.scroll = new Bscroll(this.$refs.wrapper)
+}
+```
+- 不能滚动的问题
+
+> 不能滚动是现象，我们得搞清楚这其中的根本原因。在这之前，我们先来看一下浏览器的滚动原理： 浏览器的滚动条大家都会遇到，当页面内容的高度超过视口高度的时候，会出现纵向滚动条；当页面内容的宽度超过视口宽度的时候，会出现横向滚动条。也就是当我们的视口展示不下内容的时候，会通过滚动条的方式让用户滚动屏幕看到剩余的内容。
