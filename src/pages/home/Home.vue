@@ -15,25 +15,30 @@ import HomeIcons from './components/Icons'
 import HomeRecommend from './components/recommend'
 import HomeWeekend from './components/Weekend'
 import axios from 'axios'
-
+import { mapState } from 'vuex'
 export default {
   name: 'Home',
   components: {HomeWeekend, HomeRecommend, HomeSwiper, HomeHeader, HomeIcons},
   mounted () {
     // 生命周期函数，这里写ajax数据的获取
+    this.lastCity = this.city
     this.getHomeInfo()
   },
   data () {
     return {
+      lastCity: '',
       swiperList: [], // 用来存储轮播图信息
       iconList: [], // 用来存储图标信息
       recommendList: [], // 用来存储推荐信息
       weekendList: [] // 用来存储周末去哪儿的信息
     }
   },
+  computed: {
+    ...mapState(['city'])
+  },
   methods: {
     getHomeInfo () {
-      axios.get('/api/index.json').then(this.getHomeInfoSucc)
+      axios.get('/api/index.json?city=' + this.city).then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc (res) {
       res = res.data
@@ -44,6 +49,15 @@ export default {
         this.recommendList = data.recommendList
         this.weekendList = data.weekendList
       }
+    }
+  },
+  activated () {
+    // 使用keep-alive时，才会有这个声明周期函数
+    // 当页面被重新显示的时候会被执行
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      // 重新发ajax
+      this.getHomeInfo()
     }
   }
 }
