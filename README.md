@@ -264,8 +264,3 @@ changeCity (state, city) {
 > ```
 
 
-## 6. JS跳转（编程式导航）
-```vue
-this.$router.push('/')
-```
-
