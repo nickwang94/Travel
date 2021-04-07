@@ -39,6 +39,10 @@ export default {
   activated () {
     // keep-alive，只要页面展示，这个钩子就会调用
     window.addEventListener('scroll', this.handleScroll)
+  },
+  deactivated () {
+    // 页面即将被隐藏或被其他页面替换的时候执行该生命周期函数
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
