@@ -191,7 +191,81 @@ handleLetterChange (letter) {
 ```bash
 npm install vuex --save
 ```
+- 使用
+```vue
+export default new Vuex.Store({
+  state,
+  actions,
+  mutations,
+  getters: {
+    // getters的作用有点像组件中computed，可以对state进行计算返回，避免数据的冗余
+    doubleCity (state) {
+      return state.city + ' ' + state.city
+    }
+  }
+})
+```
+创建state、actions、mutations和getters。
+其中state存放共享的数据，组件通过dispatch方法来调用action：
+```vue
+this.$store.dispatch('changeCity', city)
+```
+这里指组件通过dispatch调用changeCity这个action。
+随后action通过commit方法来调用mutation：
+```vue
+changeCity (ctx, city) {
+  ctx.commit('changeCity', city)
+}
+```
+最终由mutation对state的数据进行修改：
+```vue
+changeCity (state, city) {
+  state.city = city
+  try {
+    localStorage.city = city
+  } catch (e) {}
+}
+```
+- 特性
+
+> - getter
+> > getters的作用有点像组件中computed，可以对state进行计算返回，避免数据的冗余
+> ```vue
+> getters: {
+>   doubleCity (state) {
+>     return state.city + ' ' + state.city
+>   }
+> }
+> ```
+
+> - mapState
+> > 将vuex的数据映射到计算属性中，方便书写
+> ```vue
+> import { mapState } from 'vuex'
+> computed: {
+>    ...mapState({
+>      currentCity: 'city' // 将vuex的数据city映射到计算属性中，叫currentCity
+>    })
+> }
+> ```
+
+> - mapMutations
+> > 将mutation映射到组件中的方法里
+> ```vue
+> import { mapMutations } from 'vuex'
+> handleCityClick (city) {
+>      // this.$store.dispatch('changeCity', city)
+>      this.changeCity(city)
+>      this.$router.push('/')
+>    },
+>    // 有一个mutation叫changeCity，然后将mutation映射到组件中一个叫changeCity的方法里
+>    ...mapMutations(['changeCity'])
+> }
+> ```
+
+
 ## 6. JS跳转（编程式导航）
 ```vue
 this.$router.push('/')
 ```
+
