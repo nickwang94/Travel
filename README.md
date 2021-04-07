@@ -171,3 +171,27 @@ handleLetterChange (letter) {
 ```html
 <city-list :cities="cities" :hotCities="hotCities" :letter="letter"></city-list>
 ```
+## 5. Vuex的使用
+- 场景
+
+在城市选择页面点击某一个城市后，在首页的城市显示刚才所选择的。由于City和Home两个组件并
+没有公共的父组件，不能够使用之前通过给父组件发送一个事件的方式来传值。
+> Vuex为新的解决方案
+
+![image](https://github.com/nickwang94/Travel/blob/master/imageForReadmeFile/Snipaste_2021-04-07_09-02-17.png)
+
+图中虚线部分是Vuex的部分，其中包括：
+- State （存储所有的公用数据）
+- Actions （放一些异步操作，或复杂的同步操作 ）
+- Mutations （放一个个同步的对State的修改）
+
+组件改数据，必须调用Actions做一些异步处理（dispatch方法），然后再调用Mutations（Commit方法），只有通过Mutations最终才可以改变State的值。
+
+- 安装
+```bash
+npm install vuex --save
+```
+## 6. JS跳转（编程式导航）
+```vue
+this.$router.push('/')
+```
