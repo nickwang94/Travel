@@ -2,6 +2,9 @@
 
 > 使用Vue进行的一个旅游网页开发
 
+# 效果图
+![截图](https://github.com/nickwang94/Travel/blob/master/pic.png)
+
 ## 构建步骤
 
 ``` bash
