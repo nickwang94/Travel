@@ -209,7 +209,7 @@ handleLetterChange (letter) {
 没有公共的父组件，不能够使用之前通过给父组件发送一个事件的方式来传值。
 > Vuex为新的解决方案
 
-![image](https://github.com/nickwang94/Travel/blob/master/imageForReadmeFile/Snipaste_2021-04-07_09-02-17.png)
+![vuex原理图](https://github.com/nickwang94/Travel/blob/master/vuex.png)
 
 图中虚线部分是Vuex的部分，其中包括：
 - State （存储所有的公用数据）
