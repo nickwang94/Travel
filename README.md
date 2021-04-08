@@ -39,6 +39,34 @@ npm run build --report
 - package-lock.json（锁定安装时的包的版本号，以保证其他人在npm install时大家的依赖能保证一致）
 - package.json（项目依赖）
 
+## 真机测试
+> 步骤
+- ip访问配置
+默认webpack不支持ip访问，需要修改`package.json`文件，添加`host`配置：
+  ```json
+  scripts": {
+    "dev": "webpack-dev-server --host 0.0.0.0 --inline --progress --config build/webpack.dev.conf.js"
+  }
+  ```
+- 将项目启动，并保证手机和电脑连接同一局域网
+- 通过ipconfig获取电脑ip地址
+- 手机访问该ip地址的8080端口
+> 特殊情况说明
+> - 当手机访问无法正常显示网页时，可能是浏览器不支持新特性，需要安装第三方插件
+> ```bash
+> npm install babel-polyfill --save
+> ```
+> 然后在main.js中引入（目前项目已经引入）：
+> ```javascript
+> import 'babel-polyfill'
+> ```
+
+## 项目上线
+```bash
+npm run build
+```
+然后在项目文件中有一个`dist`目录，将其放到后端服务器上。
+
 # 一些用到的知识点总结
 ## 1. Ajax请求
 ```bash
