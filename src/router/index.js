@@ -22,5 +22,9 @@ export default new Router({
       name: 'Detail',
       component: Detail
     }
-  ]
+  ],
+  scrollBehavior (to, from, sacvedPosition) {
+    // 每次路由的时候进入页面xy的初始位置为0
+    return {x: 0, y: 0}
+  }
 })
