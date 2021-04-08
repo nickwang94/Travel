@@ -8,6 +8,7 @@ import fastClick from 'fastclick' // 解决移动端点击事件300ms延迟
 import 'styles/iconfont.css' // 使用iconfont
 import 'swiper/swiper-bundle.css'
 import store from './store'
+import 'babel-polyfill'
 Vue.config.productionTip = false
 
 fastClick.attach(document.body)
